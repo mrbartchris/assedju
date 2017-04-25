@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Krisp">
+
+	<meta name="description" content="Krisp Games Login Page">
+	<link rel="icon" href="icon.png">
+	<title>Landing Page</title>
+	<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href = "./signin.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top navPadTop">
+		<div class="container">
+			<div class="collapse navbar-collapse">
+				<a href ="landing.html.php"> <img title="Home" src="imgs/icon.png" width="40px"></a>
+				<ul class="nav navbar navbar-right nbRight">
+					<a href="#" class="dropdown-toggle noULOH avPic" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" width="40px">
+						<label id="unlabel"></label>
+						<img title="Account" src="imgs/1.png" width="40px" class= "img-circle"></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-header">Account Settings</li>
+								<li><a href="actSettings?avat">Change Avatar</a></li>
+								<li><a href="actSettings?user">Change Username</a></li>
+								<li><a href="actSettings?pass">Change Password</a></li>
+							</ul>
+					<a href="" class="btn btn-primary" name="log">Sign out</a>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid headPadTop">
+	
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h1 class="largeTextC">
+				Welcome ________________________
+			</h1>
+			<BR>
+		</div>
+		
+		<div class="container-fluid">
+			<div class="row">
+			
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sidebar" >
+					<ul class="nav nav-sidebar">
+						<li class="dropdown-header"><h4>Friends</h4></li>
+						<li><div class="row">
+							<div class="btn-group btn-group-justified">
+							<a href="#" type="button" class="btn btn-info" data-toggle="modal" data-target="#addFriendModal">Add Friend</a>
+							<a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#invFriendModal">Invite Friend</a>
+							</div>
+						</div></li>
+						<li class="frounded">
+							<a class="friendstc" href="#">Friend 1</a>
+							<a class="friendstc" href="#">Friend 2</a>
+							<a class="friendstc" href="#">Friend 3</a>
+							<a class="friendstc unBord" href="#">Friend n</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+
+					<div class="textC row">
+					
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<a href="landingGames.html.php">
+								<button type="button" class="btn btn-primary btn-block">
+									<img src="imgs/connect4.png" class="img-circle border-radius-500px" alt="Connect 4 icon" >
+									</img>
+								</button>
+							</a>
+							<b>Connect 4</b>
+						</div>
+						
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<a href="">
+								<button type="button" class="btn btn-primary btn-block">
+									<img src="imgs/uno.png" class="img-circle border-radius-500px" alt="Uno icon" >
+									</img>
+								</button>
+							</a>
+							<b>Uno</b>
+						</div>
+						
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<a href="">
+								<button type="button" class="btn btn-primary btn-block">
+									<img src="imgs/ship.png" class="img-circle" alt="Battle ships icon" >
+									</img>
+								</button>
+							</a>
+							<b>Battle Ships</b>
+						</div>
+							
+						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<a href="">
+								<button type="button" class="btn btn-primary btn-block">
+									<img src="imgs/snake.jpg" class="img-circle" alt="Snakes and Ladders icon" >
+									</img>
+								</button>
+							</a>
+							<b>Snakes and Ladders</b>
+						</div>
+					</div>
+					
+					<div class="textC row">
+						ANOTHER DIV
+					</div>	
+					
+				</div>
+				
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<iframe src="http://localhost:3000" height="300px">
+					  <p>Your browser does not support iframes.</p>
+					</iframe>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="addFriendModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Add Friend</h4>
+		  </div>
+		  <div class="modal-body">
+				<form id = "addFriendForm" method="post">
+					<div class = "input-group input-group-md"> 
+						<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+						<input type="text" class="form-control" id="usern" name="usern" placeholder="Username" required="">
+					</div>
+					<button type="submit" class="btn btn-primary btn-block margTop" name="addF">Add to Friends List!</button>
+				</form>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	
+	<div id="invFriendModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Invite Friend</h4>
+		  </div>
+		  <div class="modal-body">
+				<form id = "addFriendForm" method="post">
+					<div class = "input-group input-group-md"> 
+						<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+						<input type="email" class="form-control" id="emailInv" name="emailInv" placeholder="Email Address" required="">
+					</div>
+					<button type="submit" class="btn btn-primary btn-block margTop" name="invS">Send Invitation!</button>
+				</form>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+	<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script>
+		$(document).ready(function(){
+		$('[data-toggle="popover"]').popover();   
+		});
+	</script>
+</body>

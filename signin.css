@@ -1,0 +1,242 @@
+body {
+  padding-top: 40px;
+  background-color: #eee;
+  background-image: url("knights1.jpg");
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.btn-default{
+	font-size: 80px;
+}
+.largeTextC{
+	font-size: 90px;
+	text-align: center;
+	margin: 0 auto;
+}
+.textC{
+	text-align: center;
+}
+.navPadTop{
+	padding: 10px 0;
+}
+.headPadTop{
+	padding: 40px 0 0 0;
+}
+#jscb{
+	text-align: center;
+	width: 730px;
+	height: 585px;
+	margin: 0 auto;
+}
+.noMargin{
+	margin: 0px 0px;
+}
+.avPic{
+	margin-right: 15px;
+}
+.bgRed{
+	background-color:red;
+}
+.bgBlue{
+	background-color:blue;
+}
+.nbRight{
+	min-height: auto;
+    margin-bottom: 0px;
+}
+.dropdown-toggle:focus {
+    outline: none;
+}
+a.noULOH{
+	text-decoration: none;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+.sidebar {
+	position: auto;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+}
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a, .nav-sidebar > li > div{
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.chAvPad{
+	padding: 20px 0;
+}
+.imgPt{
+	cursor:pointer;
+	border: 8px solid transparent;
+}
+.imgPt:hover{
+	border: 8px solid #7b93a9;
+}
+.activeImgAv{
+	border: 8px solid #7b93a9;
+}
+.activeImgAvT{
+	border: 8px solid lightblue;
+}
+.frounded{
+	background-color: #e1e5e8;
+	margin: 10px;
+	border-radius: 5%/50%;
+	border: 5px solid #7b93a9;
+	padding: 5px 10px 5px 15px;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+	color: black;
+    text-decoration: none;
+    background-color: #e1e5e8;
+}
+.friendstc{
+	color: #3f3f44;
+	border-bottom: #7b93a9 solid 1px;
+	padding: 0 !important;
+}
+.unBord{
+	border: 0px;
+}
+.frimage{
+	width: 30px;
+	margin-right: 10px;
+}
+.frstatus{
+	width: 12px;
+	position:absolute;
+    top:0;
+    bottom:0;
+	right:5%;
+    margin:auto;
+}
+.margTop{
+	margin-top: 10px;
+}
+.margTopBig{
+	margin-top: 40px;
+}
+.btn>img{
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 10px;
+	padding-left: 18%;
+	padding-right: 26%;
+}
+.friendsPos{
+	height: 10px;
+}
+.friendsChatWindow{
+	width: 180px;
+	height: 300px;
+	border-radius: 3px;
+	padding: 0 0;
+}
+.friendsChatTitle{
+	font-size: 110%;
+	font-weight: bold;
+	background-color: rgba(20, 109, 98, 0.59);
+	/*margin: -2px -2px;*/
+	padding: 2px 5px;
+}
+.friendsChatMessage{
+	height: 250px;
+	padding: 10px 3px;
+	font-size: 90%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.friendsChatMessageArea{
+	padding: 0 0;
+	margin-bottom: 0;
+}
+.friendsChatInput{
+	margin: 0 0;
+	border-bottom: 0;
+	border-right: 0;
+	border-left: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+
+}
+.myWell{
+	display: inline-block;
+	margin-bottom: 5px;
+	padding: 10px 6px;
+	border-radius: 14px 14px 14px 0;
+}
+.myMsg{
+	background-color: #937cca;
+	float:right;
+	border-radius: 14px 14px 0 14px;
+}
+.truncateOF {
+	max-width: 100%;
+	/*
+	white-space: pre-wrap;
+	overflow: visible;
+	text-overflow: clip;
+	word-wrap: break-word;
+	*/
+	max-height: 100%;
+	word-wrap: break-word;
+
+}
+.logRegC{
+	color: white;
+}
+.allChatScroll{
+	max-height: 280px;
+	overflow-y: scroll;
+}
+.lessPadding{
+	padding: 5px;
+}

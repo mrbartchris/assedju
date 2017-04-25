@@ -1,0 +1,15 @@
+.col-xs-8.col-sm-8.col-md-8.col-lg-8
+    h2 Change username
+    form#userChange(action='', method='post')
+        .form-group
+            input#newUsername.form-control(type='text', name='newUsername', placeholder='New Username', required='')
+            input#sessionUsername(type='hidden', name='sessionUsername', value=username)
+        |
+        button.btn.btn-primary.btn-lg.btn-block(type='submit', name='chUser') Confirm
+
+    #errRow.row.margTopBig(style='display:none')
+        .col-xs-4.col-sm-4.col-md-4.col-lg-4
+        #errRowInner.alert.alert-danger.col-xs-8.col-sm-8.col-md-8.col-lg-8
+    #succRow.row.margTopBig(style='display:none')
+        .col-xs-4.col-sm-4.col-md-4.col-lg-4
+        #succRowInner.alert.alert-success.col-xs-8.col-sm-8.col-md-8.col-lg-8

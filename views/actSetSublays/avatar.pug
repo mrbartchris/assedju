@@ -1,0 +1,19 @@
+mixin avimg(num)
+    .col-xs-3.col-sm-3.col-md-3.col-lg-3
+        img.img-responsive.img-circle.imgPt(onclick='imgClC(this)', src="../imgs/"+num+".png", name='avatar')
+
+-var curNum = 0;
+-var curNumInner = 0;
+.container-fluid
+    h2 Choose an avatar
+        .row.placeholders
+            while curNum<7
+                .row.chAvPad
+                    -curNumInner = 0;
+                    while curNumInner<4
+                        +avimg(curNum++)
+                        -curNumInner++;
+    form#avChange(action='', method='post')
+        input#sessionVar(type='hidden', name='sessionVar', value='')
+        |
+        button#chAvSubmit.btn.btn-success.btn-lg(type='submit', name='chAv') Confirm

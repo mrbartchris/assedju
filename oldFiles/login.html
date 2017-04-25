@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Krisp Games Login Page">
+	<meta name="author" content="Krisp">
+	<link rel="icon" href="icon.png">
+	<title>Login | Krisp</title>
+	
+	<link href = "./css/bootstrap.min.css" rel="stylesheet">
+	<link href="signin.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid">
+<div class="row">
+	<form class="form-signin" id = "loginForm" action="?loginRedirect" method="post">
+	<h1>Login</h1>
+		<div class = "form-group"> 
+			<!-- <label for="username">Username</label> -->
+			<input type="text" class=form-control id="username" name="username" placeholder="Username" required="">
+		</div>
+		<div class = "form-group"> 
+			<!-- <label for="password">Password</label> -->
+			<input type="password" class=form-control id="password" name="password" placeholder="Password" required="">
+		</div>
+		<div class="checkbox">
+          <label>
+            <input type="checkbox" name="chkbx" id="chkbx" value="remember-me"> Remember me
+          </label>
+        </div>
+		<button type="submit" class="btn btn-primary btn-lg btn-block" name="login">Login</button>
+	</form>
+</div>
+</div>
+
+
+
+</body>

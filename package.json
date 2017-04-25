@@ -1,0 +1,32 @@
+{
+  "name": "nodetesting",
+  "version": "0.0.1",
+  "author": "kaspy",
+  "dependencies": {
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "express": "~4.9.8",
+    "express-session": "^1.15.2",
+    "mysql": "latest",
+    "nodemailer": "^4.0.1",
+    "pug": "latest",
+    "socket.io": "latest",
+    "xoauth2": "latest",
+    "ejs": "~1.0.0"
+  },
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrbartchris/assedju.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrbartchris/assedju/issues"
+  },
+  "homepage": "https://github.com/mrbartchris/assedju#readme",
+  "description": ""
+}
