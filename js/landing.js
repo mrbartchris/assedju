@@ -3,6 +3,7 @@ var socket = io();
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
     socket.emit('tuni l-hbieb', getCookie("tempUN"));
+
 });
 
 function getCookie(cname) {

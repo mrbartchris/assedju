@@ -14,10 +14,10 @@ html(lang='en')
     body
         .container-fluid
             .row.largeTextC
-                .col-xs-4.col-sm-4.col-md-4.col-lg-4.largeTextC
+                .col-xs-12.col-sm-8.col-md-6.col-lg-5.largeTextC
                     button.btn.btn-default.btn-block(name='log', onclick='loginFunc()') Login
-                |  |
-                .col-xs-4.col-sm-4.col-md-4.col-lg-4.largeTextC
+                |
+                .col-xs-12.col-sm-8.col-md-6.col-lg-5.largeTextC
                     button.btn.btn-default.btn-block(name='reg', onclick='regFunc()') Register
             #loginRow.row(style='display: none;')
                 form#loginForm.form-signin(action='loginRedir', method='post')
