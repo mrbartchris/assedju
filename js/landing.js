@@ -48,6 +48,8 @@ socket.on('new message', function(data){
     $('#chat').append('<div class="well lessPadding"><strong>' +data.user+ '</strong>: ' +data.msg+ '</div>');
 });
 
+
+
 $('#messageForm').submit(function(e){
     e.preventDefault();
     if($('#message').val() !== '') {
@@ -193,6 +195,15 @@ socket.on('frMsg',function(msg, thisUser, toUser){
     }
 });
 
+socket.on('statUp', function(){
+    var username = getCookie("tempUN");     //username
+    var d = new Date().getTime();           //time
+    socket.emit('status update', username, d);
+    setInterval(function() {
+        var d = new Date().getTime();       //time
+        socket.emit('status update', username, d);
+        },600000);                              //10 minutes = 600 seconds = 600,000 ms
+});
 
 /*
 $("form[name='friendMsgForm']").submit(function(e){

@@ -48,10 +48,29 @@ var returnRouter = function(io) {
 
     var users = [];
     var connections = [];
+    var currentTimes = [];
+    var currUsers = [];
 
     var icon = null;    //to store variables in case session variables need to be changed
     var uname = null;
 
+    function updateStatusTime(){
+        var timeNow = new Date().getTime();
+        for(var c = 0; c<currentTimes.length; c++){
+            if(currentTimes[c].time+600000 < timeNow){    //if 10 mins passed without the socket emitting an update
+                //user timeout
+                console.log("Signing out "+currentTimes[c].un+" (Reason: Timed out)");
+                var sqlto = "update users set status='0' where username='"+currentTimes[c].un+"'";
+                db.query(sqlto, function(err){
+                    if(err) console.log(err);
+                });
+                var inum = currUsers.indexOf(currentTimes[c].un);
+                currentTimes.splice(inum);
+                currUsers.splice(inum);
+            }
+        }
+    }
+    setInterval(updateStatusTime, 60000);
 
     function updateUsernames(){
         io.sockets.emit('get users', users);
@@ -90,6 +109,7 @@ var returnRouter = function(io) {
         connections.push(socket);
         console.log('%s sockets connected', connections.length);
         socket.emit('getUN');
+        socket.emit('statUp');
 
         socket.on('disconnect', function(){
             console.log("");
@@ -98,6 +118,22 @@ var returnRouter = function(io) {
             updateUsernames();
             connections.splice(connections.indexOf(socket), 1);
             console.log('%s sockets connected', connections.length);
+        });
+
+
+        socket.on('status update', function(username, time){
+            //currentTimes.username =  time;
+            if(currUsers.indexOf(username) === -1){     // if user is not in currUsers
+                currentTimes.push({un: username, time: time});
+                currUsers.push(username);
+            }
+            else {                                      //search for user in currentTimes
+                for(var c = 0; c<currentTimes.length; c++){
+                    if(currentTimes[c].un === username){    //if this is the user
+                        currentTimes[c].time = time;
+                    }
+                }
+            }
         });
 
         socket.on('sendUN',function(data){
