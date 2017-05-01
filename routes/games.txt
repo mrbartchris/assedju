@@ -5,4 +5,5 @@
 {fbwg || Fireboy and Watergirl || fbwg.png || src="http://GamesForWork.com/games/swf/The Forest Temple_november_20th_2009.swf" quality="high" wmode="direct" width="800" height="600" name="gameObj" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer"}
 ][
 {Sample || Sample || freeciv.png || style="margin-top:-20px" src="https://node-multiplayer-snake.herokuapp.com" width="100%" height="700px"}
+{Sample2 || Sample2 || fbwg.png || style="margin-top:-20px" src="https://node-multiplayer-snake.herokuapp.com" width="100%" height="700px"}
 ]
