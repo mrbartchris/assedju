@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='author', content='Krisp')
+        link(rel='icon', href='../imgs/icon.png')
+        link(href='http://getbootstrap.com/dist/css/bootstrap.min.css', rel='stylesheet')
+        link(href='../signin.css', rel='stylesheet')
+        include htmls/landingHead.html
+    body
+        nav.navbar.navbar-default.navbar-fixed-top.navPadTop
+            .container
+                div
+                    a(href='../../')
+                        img(title='Home', src='../imgs/icon.png', width='40px')
+                    ul.nav.navbar.navbar-right.nbRight.fRight
+                        a.dropdown-toggle.noULOH.avPic(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false', width='40px')
+                            label #{username}
+                            |
+                            img.img-circle(title='Account', src='../imgs/'+icon+'.png', width='40px')
+                        ul.dropdown-menu
+                            li.dropdown-header Account Settings
+                            li
+                                a(href='actSettings/avat') Change Avatar
+                            li
+                                a(href='actSettings/user') Change Username
+                            li
+                                a(href='actSettings/pass') Change Password
+                        |
+                        a.btn.btn-primary(href='../sORed', name='log') Sign out
+        .container-fluid.headPadTop.textC
+            #{atts}
+
+
+        script(src = '../../js/landing.js')

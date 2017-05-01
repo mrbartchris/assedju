@@ -1,0 +1,32 @@
+iframes = [
+{}
+{}
+]
+embeds = [
+{}
+{}
+]
+local sources = [
+{}
+{}
+]
+
+First [] for iframes, second for embeds, third for local sources
+
+Attribute sets for each game should be included in {}
+
+Attribute sets for different games should be separated by a newline
+
+Attribute sets should contain a name for the directory, game name to be displayed on the website,
+image to be used on the website and then the set of attributes to be included in the iframe/embed/script
+separated by a white space, two pipes, and white space ->  ||  as such:
+
+{DirectoryGameName || GameName || ImageName.extension || src="www.example.com/mysrc" width="100%" height="700px"}
+
+E.g. : {snake || Snake || snake.jpg || style="margin-top:-20px" src="https://node-multiplayer-snake.herokuapp.com" width="100%" height="700px"}
+
+Attributes can include any html attributes, namely:
+    - style
+    - src
+    - width
+    - height

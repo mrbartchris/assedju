@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var socket = require("socket.io");
+var fs = require('fs');
 const nodemailer = require('nodemailer');
 
 var db = mysql.createConnection({   //define connection parameters
@@ -53,6 +54,8 @@ var returnRouter = function(io) {
 
     var icon = null;    //to store variables in case session variables need to be changed
     var uname = null;
+
+    var gameNames=[], gameLinks=[], gameImgs=[];
 
     function updateStatusTime(){
         var timeNow = new Date().getTime();
@@ -247,6 +250,150 @@ var returnRouter = function(io) {
         });
     });
 
+    //importing the games from games.txt
+    fs.readFile('./routes/games.txt',function(err,data){
+        console.log("-----------------------------------------------------");
+        if(err) console.log(err);
+        else {
+            //console.log(data.toString());
+            var txt = data.toString().split("]["); //separates the whole thing into 3 parts, [_____ , _____ , _____]
+            txt[0] = txt[0].substring(1, txt[0].length);
+            var len = txt.length-1;
+            txt[len] = txt[len].substring(0, txt[len].length - 1);
+
+            //create arrays for each category from the user supplied sources in the text file
+            var ifs = txt[0].split("\r\n");
+            var emb = txt[1].split("\r\n");
+            var srcs = txt[2].split("\r\n");
+
+            //remove empty array elements
+            ifs = ifs.filter(function(n){ return n !== ''});
+            emb = emb.filter(function(n){ return n !== ''});
+            srcs = srcs.filter(function(n){ return n !== ''});
+            //now contain [name, attributes]
+
+            var i, arr1=[], arr2=[], arr3=[], arr, arrT=[];
+            //counter variable, 3 arrays to hold items, 1 array to hold current set
+
+            //arr will store: link name, game name, img src, attributes
+            for(i = 0; i<ifs.length; i++){
+                arr = ifs[i].split(" || ");
+                arr[0] = arr[0].substring(1, arr[0].length);
+                arr[3] = arr[3].substring(0, arr[3].length-1);
+
+                gameLinks.push(arr[0]);
+                gameNames.push(arr[1]);
+                gameImgs.push(arr[2]);
+
+                arr1[i] = [];
+                arrT[0] = arr[0];
+                arrT[1] = arr[3];
+                arr1[i][0] = arr[0];
+                arr1[i][1] = arr[3];
+                console.log(arrT);
+            }
+            console.log(arr1);
+            for(i = 0; i<emb.length; i++){
+                arr = emb[i].split(" || ");
+                arr[0] = arr[0].substring(1, arr[0].length);
+                arr[3] = arr[3].substring(0, arr[3].length-1);
+
+                gameLinks.push(arr[0]);
+                gameNames.push(arr[1]);
+                gameImgs.push(arr[2]);
+
+                arr2[i] = [];
+                arrT[0] = arr[0];
+                arrT[1] = arr[3];
+                arr2[i][0] = arr[0];
+                arr2[i][1] = arr[3];
+                console.log(arrT);
+            }
+            console.log(arr2);
+            for(i = 0; i<srcs.length; i++){
+                arr = srcs[i].split(" || ");
+                arr[0] = arr[0].substring(1, arr[0].length);
+                arr[3] = arr[3].substring(0, arr[3].length - 1);
+
+                gameLinks.push(arr[0]);
+                gameNames.push(arr[1]);
+                gameImgs.push(arr[2]);
+
+                arr3[i] = [];
+                arrT[0] = arr[0];
+                arrT[1] = arr[3];
+                arr3[i][0] = arr[0];
+                arr3[i][1] = arr[3];
+                console.log(arrT);
+            }
+            console.log(arr3);
+
+            //now adding routes for each name/attribute set -> should also add img in layout.pug
+            console.log("_______________Iframes_______________");
+            for(i = 0; i<arr1.length; i++){
+                (function(i) {
+                    var gname = arr1[i][0];
+                    var attrs = arr1[i][1];
+                    console.log("Game name: " + gname);
+                    console.log("Game Atrrs: " + attrs);
+                    router.get("/game/" + gname, function (req, res) {
+                        var username = req.session.username;
+                        var icon = req.session.icon;
+                        res.render('gameLays', {
+                            username: username,
+                            icon: icon,
+                            atts: "iframe " + attrs
+                        });
+                    });
+                })(i);
+            }
+            console.log("_______________Embeds_______________");
+            for(i = 0; i<arr2.length; i++){
+                (function(i) {
+                    var gname = arr2[i][0];
+                    var attrs = arr2[i][1];
+                    console.log("Game name: " + gname);
+                    console.log("Game Atrrs: " + attrs);
+                    router.get("/game/" + gname, function (req, res) {
+                        var username = req.session.username;
+                        var icon = req.session.icon;
+                        res.render('gameLays', {
+                            username: username,
+                            icon: icon,
+                            atts: "embed " + attrs
+                        });
+                    });
+                })(i);
+            }
+            console.log("_______________Sources_______________");
+            for(i = 0; i<arr3.length; i++){
+                (function(i) {
+                    var gname = arr3[i][0];
+                    var attrs = arr3[i][1];
+                    console.log("Game name: " + gname);
+                    console.log("Game Atrrs: " + attrs);
+                    router.get("/game/" + gname, function (req, res) {
+                        var username = req.session.username;
+                        var icon = req.session.icon;
+                        res.render('gameLays', {
+                            username: username,
+                            icon: icon,
+                            atts: "script " + attrs
+                        });
+                    });
+                })(i);
+            }
+
+        }
+        console.log("-----------------------------------------------------");
+    });
+
+
+
+
+
+
+
     router.use(function timeLog(req, res, next) {    //function to log time of each request
         console.log("");
         //var dx = new Date();
@@ -277,11 +424,11 @@ var returnRouter = function(io) {
             db.query(sql, function(err){if(err) console.log(err)});
             req.session.username = username;
             req.session.icon = icon;
-            res.render('layout', {username: username, icon: icon});
+            res.render('layout', {username: username, icon: icon, gn:gameNames, gl:gameLinks, im:gameImgs});
         }
         else if (req.session.username) {
             var usernam = req.session.username;
-            res.render('layout', {username: usernam, icon: req.session.icon});
+            res.render('layout', {username: usernam, icon: req.session.icon, gn:gameNames, gl:gameLinks, im:gameImgs});
         }
         else {
             res.render('logregLay');
@@ -297,7 +444,7 @@ var returnRouter = function(io) {
         if (req.session.username) {
             var username = req.session.username;
             var icon = req.session.icon;
-            res.render('layout', {username: username, icon: icon});
+            res.render('layout', {username: username, icon: icon, gn:gameNames, gl:gameLinks, im:gameImgs});
         }
         else {
             res.redirect("/");
@@ -333,7 +480,7 @@ var returnRouter = function(io) {
                     req.session.username = username;
                     res.cookie('tempUN', username);
                     console.log("Icon: "+icon);
-                    res.render('layout', {username: username, icon: icon});
+                    res.render('layout', {username: username, icon: icon, gn:gameNames, gl:gameLinks, im:gameImgs});
                 }
                 else {
                     res.render('logregLay', {error: "Incorrect password"});
@@ -444,6 +591,7 @@ var returnRouter = function(io) {
         }
     });
 
+    /*
     router.get("/game/freeciv", function(req,res){
         var username = req.session.username;
         var icon = req.session.icon;
@@ -461,6 +609,7 @@ var returnRouter = function(io) {
         var icon = req.session.icon;
         res.render('gameLay', {username: username, icon: icon, game:"fbwg"});
     });
+    */
 
 
     router.get("/actSettings/pass", function(req,res){

@@ -29,6 +29,7 @@ app.use('/',routes);
 app.use(function(req,res,next){
     var err = new Error('Ma nistax insib il-pagna siehbi');
     err.status = 404;
+    res.redirect("/");
     next(err);
 });
 

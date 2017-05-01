@@ -1,0 +1,194 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 col-lg-2 sidebar padTop friendSide" >
+			<button class="btn btn-block" data-toggle="collapse" data-target="#collapseFriends">
+				<span class="glyphicon glyphicon-user"></span>   <b>Friends List</b>
+			</button>
+			<div class="collapse" id="collapseFriends">
+				<ul class="nav nav-sidebar">
+					<h4></h4>
+					<li><div class="row">
+						<div class="btn-group btn-group-justified">
+						<a href="#" type="button" class="btn btn-info" data-toggle="modal" data-target="#addFriendModal">Add Friend</a>
+						<a href="#" type="button" class="btn btn-success" data-toggle="modal" data-target="#invFriendModal">Invite Friend</a>
+						</div>
+					</div></li>
+					<li class="frounded" id="friendsList">
+						<!-- this is where friends will be added on load -->
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-12 col-md-9 col-lg-7 padTop">
+
+			<div class="textC row">
+
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<a href="">
+						<button type="button" class="btn btn-primary btn-block">
+							<img src="imgs/connect4.png" class="img-circle border-radius-500px" alt="Connect 4 icon" >
+						</button>
+					</a>
+					<b class="logRegC">Connect 4</b>
+				</div>
+
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<a href="">
+						<button type="button" class="btn btn-primary btn-block">
+							<img src="imgs/uno.png" class="img-circle border-radius-500px" alt="Uno icon" >
+						</button>
+					</a>
+					<b class="logRegC">Uno</b>
+				</div>
+
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<a href="">
+						<button type="button" class="btn btn-primary btn-block">
+							<img src="imgs/ship.png" class="img-circle" alt="Battle ships icon" >
+						</button>
+					</a>
+					<b class="logRegC">Battle Ships</b>
+				</div>
+
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<a href="">
+						<button type="button" class="btn btn-primary btn-block">
+							<img src="imgs/snakeLad.jpg" class="img-circle" alt="Snakes and Ladders icon" >
+						</button>
+					</a>
+					<b class="logRegC">Snakes and Ladders</b>
+				</div>
+			</div>
+
+			<div class="textC row">
+
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<a href="/game/freeciv">
+						<button type="button" class="btn btn-primary btn-block">
+							<img src="imgs/freeciv.png" class="img-circle border-radius-500px" alt="Freeciv icon" >
+						</button>
+					</a>
+					<b class="logRegC">FreeCiv</b>
+				</div>
+
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<a href="/game/snake">
+						<button type="button" class="btn btn-primary btn-block">
+							<img src="imgs/snake.jpg" class="img-circle border-radius-500px" alt="Snake icon" >
+						</button>
+					</a>
+					<b class="logRegC">Snake</b>
+				</div>
+
+				<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+					<a href="/game/fbwg">
+						<button type="button" class="btn btn-primary btn-block">
+							<img src="imgs/fbwg.png" class="img-circle border-radius-500px" alt="Fireboy Watergirl icon" >
+						</button>
+					</a>
+					<b class="logRegC">Fireboy and Watergirl</b>
+				</div>
+
+
+			</div>
+
+		</div>
+
+		<div class="hidden-xs hidden-sm col-md-6 col-lg-3 padTop">
+			<div class = "container-fluid">
+				<div id = "messageArea" class = "row allChatScroll">
+					<div class = "well lessPadding">
+						<h3 class="noMargin lessPadding">Online Users</h3>
+						<ul class = 'list-group noMargin lessPadding' id = "users"></ul>
+					</div>
+					<div class = "chat lessPadding" id = "chat"></div>
+				</div>
+				<form id = "messageForm">
+					<div class = "form-group">
+						<label class = "logRegC padTop">Enter Message</label>
+						<textarea class = "form-control" id = "message"></textarea>
+						<br />
+						<input type = "submit" class = "btn btn-primary" value = "Send Message" />
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div id="addFriendModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Add Friend</h4>
+			</div>
+			<div class="modal-body">
+				<form id = "addFriendForm" method="post">
+					<div class = "input-group input-group-md">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+						<input type="text" class="form-control" id="usern" name="usern" placeholder="Username" required="">
+					</div>
+					<button type="submit" class="btn btn-primary btn-block margTop" name="addF">Add to Friends List!</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div id="invFriendModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Invite Friend</h4>
+			</div>
+			<div class="modal-body">
+				<form id = "invFriendForm" method="post">
+					<div class = "input-group input-group-md">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+						<input type="email" class="form-control" id="emailInv" name="emailInv" placeholder="Email Address" required="">
+					</div>
+					<button type="submit" class="btn btn-primary btn-block margTop" name="invS">Send Invitation!</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer class="footer">
+	<div class="row" id="friendsChatsRow">
+
+		<!--
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div class="dropup friendsPos open" id="friendChatWindow">
+                <div class="dropdown-menu friendsChatWindow">
+                    <div class="friendsChatTitle">Username
+                        <button type="button" class="close" onclick="hideChat(this)">×</button>
+                    </div>
+                    <div class="friendsChatMessage">My message </div>
+                    <div class="friendsChatMessageArea">
+                        <form>
+                            <div class="form-group noMargin">
+                                <input type="text" class="form-control friendsChatInput" placeholder="Type a message..." required="">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
+	</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>

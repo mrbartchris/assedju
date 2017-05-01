@@ -34,6 +34,43 @@ html(lang='en')
             .col-xs-12.col-sm-12.col-md-12.col-lg-12
                 h1.largeTextC.logRegC  Welcome #{username}
                 br
-            include htmls/landing.html
+            .container-fluid
+                .row
+                    .col-md-3.col-lg-2.sidebar.padTop.friendSide
+                        button.btn.btn-block(data-toggle='collapse', data-target='#collapseFriends')
+                            span.glyphicon.glyphicon-user
+                            |
+                            b Friends List
+                        #collapseFriends.collapse
+                            ul.nav.nav-sidebar
+                                h4
+                                li
+                                    .row
+                                        .btn-group.btn-group-justified
+                                            a.btn.btn-info(href='#', type='button', data-toggle='modal', data-target='#addFriendModal') Add Friend
+                                            |
+                                            a.btn.btn-success(href='#', type='button', data-toggle='modal', data-target='#invFriendModal') Invite Friend
+                                li#friendsList.frounded
+                    .col-xs-12.col-sm-12.col-md-9.col-lg-7.padTop
+                        //creating a mixin to make imports easier
+                        mixin gil(gname,glink,img)
+                            .col-xs-3.col-sm-3.col-md-3.col-lg-3
+                                a(href='/game/'+glink)
+                                    button.btn.btn-primary.btn-block(type='button')
+                                        img.img-circle.border-radius-500px(src='imgs/'+img, alt=' icon')
+                                |
+                                b.logRegC #{gname}
+
+                        -var n = 0, cn = 0, imgs = gn.length;
+
+                        while n<4
+                            .textC.row
+                                while cn<4
+                                    +gil(gn[n],gl[n],im[n])
+                                    -cn++
+                                    -n++
+                            -cn=0
+
+                    include htmls/landing.html
 
         script(src = '../js/landing.js')
