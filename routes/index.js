@@ -257,20 +257,21 @@ var returnRouter = function(io) {
         else {
             //console.log(data.toString());
             var txt = data.toString().split("]["); //separates the whole thing into 3 parts, [_____ , _____ , _____]
-            txt[0] = txt[0].substring(1, txt[0].length);
+            txt[0] = txt[0].substring(1, txt[0].length);    //removes [ from the first part
             var len = txt.length-1;
-            txt[len] = txt[len].substring(0, txt[len].length - 1);
+            txt[len] = txt[len].substring(0, txt[len].length - 1);  //removes ] from the last part
 
             //create arrays for each category from the user supplied sources in the text file
-            var ifs = txt[0].split("\r\n");
-            var emb = txt[1].split("\r\n");
-            var srcs = txt[2].split("\r\n");
+            var ifs = txt[0].split("\n");
+            var emb = txt[1].split("\n");
+            var srcs = txt[2].split("\n");
 
             //remove empty array elements
             ifs = ifs.filter(function(n){ return n !== ''});
             emb = emb.filter(function(n){ return n !== ''});
             srcs = srcs.filter(function(n){ return n !== ''});
             //now contain [name, attributes]
+
 
             var i, arr1=[], arr2=[], arr3=[], arr, arrT=[];
             //counter variable, 3 arrays to hold items, 1 array to hold current set
