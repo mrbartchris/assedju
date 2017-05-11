@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Snakes & Ladders</title>
+	
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+
+
+	<script src =
+	 	"https://cdn.socket.io/socket.io-1.4.5.js"
+	></script>
+	
+    <canvas id="board" width="650" height="650" style="border:3px solid #000000;">
+    </canvas>
+
+    <script type="text/javascript"> 
+
+		var socket = io.connect();//io object
+		
+		var id ;
+		
+		//this function checks whether the nextMove button should be activated or not, according to the 
+		//turnCounter.
+		function check()
+		{
+			//with 'info', the id and the turnCount are recieved.
+			socket.on('info', function(data)
+			{			
+				//the '+' before the name of the variable is used to convert it to integer, because it is actually string, 
+				//and else it would do string concatenation instead of integer addition. 
+				var sum = +data.id + +data.turn;
+				
+				//adding the id and the turnCount, and giving the 'turn' to the 
+				//player with the odd sum, so as the first socket opened which will 
+				//have id 1(hence odd) will be given the 'turn' immediately. 
+				if((sum)%2 != 0)
+				{
+					document.getElementById("nextMove").disabled = false;
+					document.getElementById("nextMove").value= "Next Move";
+				}else
+				{
+					document.getElementById("nextMove").disabled = true;
+					document.getElementById("nextMove").value= "Not Your Turn!";
+				}
+			})
+		}
+		
+		check();//checking whether the button should be activated or not.
+				
+		
+        //store the co-ordinates of all the squares.
+        var squares = new Array();
+
+        var canvas = document.getElementById("board");
+        var context = canvas.getContext("2d");
+        var contextText = canvas.getContext("2d");
+        var squareSize = canvas.height / 10;
+           
+        var _currentPos = 0;
+        
+        RenderSquareBoard(); //calling the function that creates the board
+        RenderSnakeAndLadders(); //calling the function that creates the snakes and ladders       
+
+		//when the 'won' is received, which means that the game is won by one of the players
+		//this socket's page is reloaded by calling initGame().
+		socket.on('won', function()
+		{
+			alert("The game has been won!");
+			initGame();
+		});
+		
+		//drawing the squares 
+        function RenderSquareBoard() 
+        {        
+		
+			var globDisp;
+			
+			
+            var colorA = "white";
+            var colorB = "DarkGray";
+
+            var initRow = 1; 
+			var totalRows = 10; 
+			var initcolumn = 1; 
+			var totalColumns = 10;
+
+            var x = 0; 
+			var y = canvas.height - squareSize;
+
+            var columnNr = 1; 
+			var leftToRight = true;
+			
+            for (var row = initRow; row <= totalRows; row++) 
+            {
+                if (leftToRight) 
+                {
+                    x = 0;
+                }
+                else 
+                {
+                    x = canvas.width - squareSize;
+                }
+
+                for (var column = initcolumn; column <= totalColumns; column++) 
+                {
+                    if (columnNr % 2 == 0) 
+                    {
+                        context.fillStyle = colorA;
+                    }
+                    else 
+                    {
+                        context.fillStyle = colorB;
+                    }
+
+                    context.fillRect(x, y, squareSize, squareSize);
+
+                    squares[columnNr] = x.toString() + ',' + y.toString();
+
+                    contextText.font = "15px tahoma";
+                    contextText.fillStyle = "black";
+                    contextText.fillText(columnNr, x, y + squareSize);
+
+                    var x1, y1
+                    if (leftToRight) 
+                    {
+                        x += squareSize;
+
+                        x1 = x + (squareSize / 2);
+                    }
+                    else 
+                    {
+                        x -= squareSize;
+                        x1 = x - (squareSize / 2);
+                    }
+
+                    y1 = y - (squareSize / 2);
+
+                    columnNr++;
+                }
+
+                y -= squareSize;
+                leftToRight = !leftToRight;
+            }
+        }
+		
+		//creating the images of the snakes and ladders 
+        function RenderSnakeAndLadders() 
+        {
+			//drawing the first snake 
+            var img = new Image();
+			
+			//as soon as the page is loaded, call this function 
+            img.onload = function () 
+            {
+				context.drawImage(img, 66, 23);
+            };
+			
+            img.src = "../Images/SnakeA.gif";
+			//drawing the first snake 
+
+			//drawing the second snake 
+            var img1 = new Image();
+			
+            img1.onload = function () 
+            {
+				context.drawImage(img1, 66, 166);
+            };
+			
+            img1.src = "../Images/SnakeB.gif";
+			//drawing the second snake 
+
+			//drawing the first ladder 
+            var img2 = new Image();
+            img2.onload = function () 
+			{
+                context.drawImage(img2, 57, 166);
+            };
+			
+            img2.src = "../Images/LadderA.gif";
+			//drawing the first ladder 
+
+			//drawing the second ladder 
+            var img3 = new Image();
+            img3.onload = function () 
+            {
+                context.drawImage(img3, 322, 366);
+            };
+			
+            img3.src = "../Images/LadderA.gif";
+			//drawing the first ladder 
+        }
+
+        function initGame() 
+        {
+            window.location.reload(); //Reloads the current document           
+        }
+
+        function GenerateRandomNumber(max) 
+        {
+            // max dictates that the random number will fall between 0-max
+            var rnd = Math.floor(Math.random() * (max + 1))
+
+            if (rnd == 0)
+            {
+                rnd = 1;
+            }
+        return rnd;
+        }
+
+        function nextMove() 
+        {
+			//as soon as the nextMove function is called, it is set to either activted or 
+			//deactivated by calling check().
+			check();
+		
+			//the game is won when the player exceeds 99 (either 100 or greater)
+			if (_currentPos > 99)
+            {
+                alert("Congratulations, you have won the game :)");
+				socket.emit('win'); //when the game is won, this will be emitted
+                initGame();
+            }
+			
+			//when next move is called it means that the button was clicked. 
+			//When the button is clicked, it means that the player has used his turn. 
+			//We send a blank message to the server, so it can increment the turnCount. 
+			socket.emit('turnUsed');
+			
+			var newMove = GenerateRandomNumber(6); //resembling a dice 
+            alert("You got : " + newMove); //displaying the outcome
+
+            _currentPos = _currentPos + newMove;
+
+            switch (_currentPos) //catering for the 2 ladders and the 2 snakes positioned throughout the board
+            {
+				//at position 6, there is a ladder, thus the _currentPos needs to be updated manually
+				case 6:
+				_currentPos = 46;
+				break;
+				
+				//ladder
+				case 39:
+				_currentPos = 79;
+				break;
+				
+				//snake
+				case 99:
+				_currentPos = 29;
+				break;
+				
+				//snake
+				case 72:
+				_currentPos = 2;
+				break;             
+            }
+			
+			socket.emit('position', _currentPos);
+			var coordinates1;
+			
+			//every socket receives the position landed on by the other socket, and updates its canvas. 
+			socket.on('POS', function(othersPos)
+			{				
+				coordinates1 = squares[othersPos];
+				coordinates1 = coordinates1.split(',');
+					
+				socket.on('colour', function(col)
+				{
+					context.fillStyle = col;
+					
+					context.fillRect(coordinates1[0], coordinates1[1], squareSize, squareSize);
+					context.strokeRect(coordinates1[0], coordinates1[1], squareSize, squareSize);
+					
+				});
+				
+				//this is called again so the snakes and ladders are re-painted on top of the 
+				//recently updated rectangles.
+				RenderSnakeAndLadders();
+			});			
+
+			//when the player lands exactly on 100, the game is won aswell.
+            if (_currentPos == 100)
+            {
+                alert("Congratulations, you have won the game :)");
+				socket.emit('win'); //when the game is won, this will be emitted
+                initGame();
+            }
+        }
+    </script>
+
+    </br>
+    <input type="button" value="Start a new game" onclick="initGame()" />
+    </br>
+    <input type="button" id="nextMove" value="Next Move" onclick="nextMove()" />
+
+    
+</body>
+</html>

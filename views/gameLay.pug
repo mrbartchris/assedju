@@ -30,13 +30,17 @@ html(lang='en')
                                 a(href='actSettings/pass') Change Password
                         |
                         a.btn.btn-primary(href='../sORed', name='log') Sign out
-        .container-fluid.headPadTop()
-            case game
-                when "connect4": include htmls/connect4.html
-                when "freeciv": include htmls/freeciv.html
-                when "snake": include htmls/snake.html
-                when "fbwg": include htmls/fbwg.html
-                default: include htmls/landing.html
+        .container-fluid.headPadTop.textC()
+            if (sp)
+                include ../gameSRC/Snakes and ladders/Single Player/SnakeandLadder.html
+            else if (mp)
+                include ../gameSRC/Snakes and ladders/Multiplayer/index.html
+
 
 
         script(src = '../../js/landing.js')
+        script(src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+        script window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+        script(src = 'http://getbootstrap.com/dist/js/bootstrap.min.js')
+        script(src = 'http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js')
+        script(src = 'https://cdn.socket.io/socket.io-1.4.5.js')
