@@ -255,6 +255,12 @@ html {
 	background-color: rgba(245,245,245,0.7);
 	padding: 10px;
 }
+.footerMarg{
+	margin-bottom:26px;
+}
 .fRight{
 	float: right;
+}
+.btnsm{
+	font-size:12px;
 }

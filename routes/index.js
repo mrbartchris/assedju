@@ -262,9 +262,9 @@ var returnRouter = function(io) {
             txt[len] = txt[len].substring(0, txt[len].length - 1);  //removes ] from the last part
 
             //create arrays for each category from the user supplied sources in the text file
-            var ifs = txt[0].split("\n");
-            var emb = txt[1].split("\n");
-            var srcs = txt[2].split("\n");
+            var ifs = txt[0].split("\r\n");
+            var emb = txt[1].split("\r\n");
+            var srcs = txt[2].split("\r\n");
             //change to /r/n if local
 
             //remove empty array elements
