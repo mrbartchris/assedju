@@ -265,6 +265,7 @@ var returnRouter = function(io) {
             var ifs = txt[0].split("\n");
             var emb = txt[1].split("\n");
             var srcs = txt[2].split("\n");
+            //change to /r/n if local
 
             //remove empty array elements
             ifs = ifs.filter(function(n){ return n !== ''});
@@ -434,6 +435,11 @@ var returnRouter = function(io) {
         else {
             res.render('logregLay');
         }
+    });
+
+    router.get('/about',function(req,res){
+        console.log("About Get");
+        res.render('about',{username: req.session.username, icon: req.session.icon});
     });
 
     router.all('/dummy',function(req,res){

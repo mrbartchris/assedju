@@ -251,6 +251,10 @@ html {
 	background-color: rgba(245,245,245,0.5);
 	padding: 10px 30px 30px 30px;
 }
+.aboutBG{
+	background-color: rgba(245,245,245,0.7);
+	padding: 10px;
+}
 .fRight{
 	float: right;
 }

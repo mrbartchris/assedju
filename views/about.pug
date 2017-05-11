@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='author', content='Krisp')
+        link(rel='icon', href='imgs/icon.png')
+        link(href='http://getbootstrap.com/dist/css/bootstrap.min.css', rel='stylesheet')
+        link(href='./signin.css', rel='stylesheet')
+        include htmls/landingHead.html
+        meta(name='description', content='About Us')
+        title About Us
+    body
+        nav.navbar.navbar-default.navbar-fixed-top.navPadTop
+            .container
+                div
+                    a(href='../')
+                        img(title='Home', src='imgs/icon.png', width='40px')
+                    ul.nav.navbar.navbar-right.nbRight.fRight
+                        a.dropdown-toggle.noULOH.avPic(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false', width='40px')
+                            label #{username}
+                            |
+                            img.img-circle(title='Account', src='imgs/'+icon+'.png', width='40px')
+                        ul.dropdown-menu
+                            li.dropdown-header Account Settings
+                            li
+                                a(href='actSettings/avat') Change Avatar
+                            li
+                                a(href='actSettings/user') Change Username
+                            li
+                                a(href='actSettings/pass') Change Password
+                        |
+                        a.btn.btn-primary(href='/sORed', name='log') Sign out
+        .container-fluid.headPadTop
+            .col-xs-0.col-sm-1.col-md-3.col-lg-3
+            .col-xs-12.col-sm-10.col-md-6.col-lg-6.aboutBG
+                h3 About Us
+                p A project tailored as a beginner's guide into the world of web development implementing both server-side and client-side design. This project features the use of Node.js (with several npm modules - including Socket.IO for the use of WebSockets) and an external MySQL database for the back-end. The standard web technologies (HTML, CSS and JavaScript) were mainly used for you to see what you see ... as well as a templating engines (Pug - formerly, Jade).
+
+        script(src = '../js/landing.js')
+        script(src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+        script window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+        script(src = 'http://getbootstrap.com/dist/js/bootstrap.min.js')
+        script(src = 'http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js')
+        script(src = 'https://cdn.socket.io/socket.io-1.4.5.js')
